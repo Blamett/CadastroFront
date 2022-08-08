@@ -1,1 +1,28 @@
-<p>main works!</p>
+<nav class="header">
+    <div class="center-heaedr">
+        <h1>
+            Cadastro Público
+        </h1>
+    </div>
+</nav>
+
+<div class="mainContent">
+
+    <div class="botoes">
+
+        <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color">
+            <mat-button-toggle class="cadastro" routerLink="cadastro" >Me Cadastrar</mat-button-toggle>
+            <mat-button-toggle class="usuarios" routerLink="usuarios" >Lista de Usuários</mat-button-toggle>
+        </mat-button-toggle-group>
+
+    </div>
+
+    <span class="divisor"></span>
+
+    <div class="render">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+
+

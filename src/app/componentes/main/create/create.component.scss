@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+
+$my-palette: mat.$indigo-palette;
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    
+    &>.cadastrarUsuario{
+        width: 800px;
+    }
+
+    &>.cadastrarUsuario>h1{
+        color: mat.get-color-from-palette($my-palette, 500);
+        margin-bottom: 10px;
+    }
+
+}
