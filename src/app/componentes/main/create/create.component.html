@@ -6,80 +6,83 @@
         
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
+            <ng-template matStepLabel>Dados Pessoais</ng-template>
+
             <mat-form-field appearance="fill">
-              <mat-label>Name</mat-label>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+              <mat-label>Nome</mat-label>
+              <input #nome matInput placeholder="Nome Completo" formControlName="nome" required>
             </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Sexo</mat-label>
+              <input #sexo matInput placeholder="Seu sexo" formControlName="sexo" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Data de Nascimento</mat-label>
+              <input #dataDeNascimento matInput [matDatepicker]="picker" formControlName="dataDeNascimento">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Estado Civil</mat-label>
+              <input #estadoCivil matInput placeholder="Solteiro ou Casado" formControlName="estado" required>
+            </mat-form-field>
+
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext (click)="enviarDados(this.nome.value, this.sexo.value, this.dataDeNascimento.value, this.estadoCivil.value)" >Avançar</button>
             </div>
           </form>
         </mat-step>
 
-        <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+        <mat-step [stepControl]="secondFormGroup" label="Endereço">
           <form [formGroup]="secondFormGroup">
             <mat-form-field appearance="fill">
-              <mat-label>Address</mat-label>
-              <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                     required>
+              <mat-label>CEP</mat-label>
+              <input matInput formControlName="cep" placeholder="Ex: 01153 000"  required>
             </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Endereço</mat-label>
+              <input matInput formControlName="endereço" placeholder="Ex: Rua Legal"required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Número</mat-label>
+              <input matInput formControlName="numero" placeholder="Número da Casa/Apartamento"  required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Complemento</mat-label>
+              <input matInput placeholder="Ex: Ao lado da Barbearia"  required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Cidade</mat-label>
+              <input matInput formControlName="cidade" placeholder="Sua cidade"  required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Estado</mat-label>
+              <input matInput formControlName="estado" placeholder="Seu estado"  required>
+            </mat-form-field>
+
             <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperPrevious>Voltar</button>
+              <button mat-button matStepperNext (click)="enviarDados">Finalizar</button>
             </div>
           </form>
         </mat-step>
 
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
+          <p class="final">Tudo Pronto!</p>
           <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="stepper.reset()">Cadastrar Novamente</button>
           </div>
         </mat-step>
 
     </mat-stepper>  
     </div>
-
-    
-    <!-- <h1>Registro de Endereço</h1>
-
-    <mat-stepper [linear]="isLinear" #stepper>
-        <mat-step [stepControl]="firstFormGroup">
-          <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <mat-form-field appearance="fill">
-              <mat-label>Name</mat-label>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-          <form [formGroup]="secondFormGroup">
-            <mat-form-field appearance="fill">
-              <mat-label>Address</mat-label>
-              <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                     required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
-        </mat-step>
-    </mat-stepper>   -->
-
 </form>

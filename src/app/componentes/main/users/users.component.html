@@ -1,3 +1,16 @@
-<h1>
-  users works!
-</h1>
+<div class="listarUsuario">
+  <h1>Usuários Cadastrados</h1>
+</div>
+
+<div class="userlist">
+  <ul>
+    <li *ngFor="let user of users; index as i">
+      <div class="usercontent">
+        <label class="userlabel" [attr.for]="'user' + i">Nome: {{user.nome}} </label>
+        <label class="userlabel" [attr.for]="'user' + i">Sexo: {{user.sexo}} </label>
+        <label class="userlabel" [attr.for]="'user' + i">Data de Nascimento: {{user.dataDeNascimento}} </label>
+        <label class="userlabel" [attr.for]="'user' + i">Estado Civil: {{user.estadoCivil}} </label>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,4 +1,21 @@
-$cor-primaria: #222831;
-$cor-secundaria: #393E46;
-$cor-tercearia: #00ADB5;
-$cor-ascendente: #EEEEEE;
+@use '@angular/material' as mat;
+
+$my-palette: mat.$indigo-palette;
+
+.listarUsuario{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    &>h1{
+        color: mat.get-color-from-palette($my-palette, 500);
+        margin-bottom: 30px;
+    }
+}
+
+.usercontent{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
