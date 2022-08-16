@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { routes } from 'src/app/app-router.module';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,12 +9,16 @@ import { routes } from 'src/app/app-router.module';
 })
 export class MainComponent implements OnInit {
 
+  urlInicial: string;
+
   constructor(
-    
-  ) {}
+    router: Router,
+  ) {
+    this.urlInicial = router.url;
+  }
 
   ngOnInit(): void {
-    
+
   }
 
 }

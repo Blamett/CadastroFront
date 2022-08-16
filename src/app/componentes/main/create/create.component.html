@@ -2,7 +2,7 @@
     <div class="cadastrarUsuario">
         <h1>Resgistro Pessoal</h1>
 
-    <mat-stepper [linear]="isLinear" #stepper>
+     <mat-stepper [linear]="isLinear" #stepper>
         
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
@@ -31,7 +31,7 @@
             </mat-form-field>
 
             <div>
-              <button mat-button matStepperNext (click)="enviarDados(this.nome.value, this.sexo.value, this.dataDeNascimento.value, this.estadoCivil.value)" >Avançar</button>
+              <button mat-button matStepperNext>Avançar</button>
             </div>
           </form>
         </mat-step>
@@ -70,7 +70,7 @@
 
             <div>
               <button mat-button matStepperPrevious>Voltar</button>
-              <button mat-button matStepperNext (click)="enviarDados">Finalizar</button>
+              <button mat-button matStepperNext (click)="enviarDados(this.nome.value, this.sexo.value, this.dataDeNascimento.value, this.estadoCivil.value)">Finalizar</button>
             </div>
           </form>
         </mat-step>

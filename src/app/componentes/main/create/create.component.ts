@@ -45,7 +45,7 @@ export class CreateComponent implements OnInit {
       estadoCivil: estadoCivil
     })
     .subscribe(response=>{
-      console.log(response)
+      
     }) 
   }
 }

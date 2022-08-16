@@ -10,9 +10,9 @@
 
     <div class="botoes">
 
-        <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color">
-            <mat-button-toggle class="cadastro" routerLink="cadastro" >Me Cadastrar</mat-button-toggle>
-            <mat-button-toggle class="usuarios" routerLink="usuarios" >Lista de Usuários</mat-button-toggle>
+        <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color" [value]="urlInicial">
+            <mat-button-toggle value="/cadastro" class="cadastro" routerLink="cadastro">Me Cadastrar</mat-button-toggle>
+            <mat-button-toggle value="/usuarios" class="usuarios" routerLink="usuarios">Lista de Usuários</mat-button-toggle>
         </mat-button-toggle-group>
 
     </div>
@@ -23,6 +23,3 @@
         <router-outlet></router-outlet>
     </div>
 </div>
-
-
-

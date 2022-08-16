@@ -21,7 +21,6 @@ export class UsersComponent implements OnInit {
     this.http.get<User[]>('http://192.168.90.58:3000/user')
       .subscribe(response => {
         this.users = response;
-        console.log(response)
       })
   }
 
