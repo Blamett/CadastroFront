@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { plainToClass, plainToInstance } from 'class-transformer';
 import { User } from '../users/user';
 
 /**
@@ -12,7 +13,7 @@ import { User } from '../users/user';
   templateUrl: 'data-table.component.html',
 })
 export class TablePaginationExample implements OnInit {
-  displayedColumns: string[] = ['nome', 'sexo', 'dataDeNascimento', 'estadoCivil'];
+  displayedColumns: string[] = ['nome', 'sexo', 'dataDeNascimento', 'estadoCivil', 'enderecos'];
   dataSource = new MatTableDataSource<User>();
 
   users: User[] = []
@@ -23,10 +24,10 @@ export class TablePaginationExample implements OnInit {
     this.getAllUsers()
   }
 
-  getAllUsers() {
+  async getAllUsers() {
     this.http.get<User[]>('http://192.168.90.58:3000/user')
       .subscribe(response => {
-        this.users = response;
+        this.users = plainToInstance(User, response);
         this.dataSource.data = this.users
       })
   }

@@ -25,3 +25,22 @@ table {
       border-bottom: none;
   }
 }
+
+.mat-expansion-panel {
+    border-radius: 0;
+    box-shadow: none;
+}
+  
+  .mat-expansion-panel-header {
+    padding: 0; 
+}
+
+.teste{
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.botao{
+    margin-left: 100px;
+}

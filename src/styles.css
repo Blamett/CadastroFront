@@ -121,3 +121,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-form-field{
 	width: 300px !important;
 }
+
+.mat-expansion-panel-body {
+	padding: 0 !important;
+}

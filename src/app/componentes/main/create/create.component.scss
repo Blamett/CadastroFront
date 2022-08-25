@@ -8,10 +8,6 @@ form{
     margin-top: 30px;
     justify-content: center;
     align-items: center;
-    
-    &>.cadastrarUsuario{
-        width: 1000px;
-    }
 
     &>.cadastrarUsuario>h1{
         color: mat.get-color-from-palette($my-palette, 500);
@@ -21,4 +17,32 @@ form{
 
 .final{
     margin-bottom: 10px;
+}
+
+.confia{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    height: 650px;
+}
+
+.pessoal{
+    display: flex;
+    flex-direction: column;
+    padding: 35px;
+}
+
+.endereco{
+    display: flex;
+    flex-direction: row;
+    padding: 35px;
+}
+
+.parte1, .parte2{
+    display: flex;
+    flex-direction: column;
+}
+
+.end{
+    margin-bottom: 25px;
 }

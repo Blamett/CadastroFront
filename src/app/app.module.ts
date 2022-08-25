@@ -1,14 +1,15 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import ptBr from "@angular/common/locales/pt";
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import 'reflect-metadata';
 import { routes } from './app-router.module';
 import { AppComponent } from './app.component';
 import { MainModule } from './componentes/main/main.module';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import ptBr from "@angular/common/locales/pt";
-import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(ptBr);
 export const CORE_DATE_FORMATS = {

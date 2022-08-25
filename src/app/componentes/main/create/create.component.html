@@ -1,21 +1,19 @@
-<form>
-    <div class="cadastrarUsuario">
-        <h1>Resgistro Pessoal</h1>
+<div class="cadastrarUsuario">
 
-     <mat-stepper [linear]="isLinear" #stepper>
-        
-        <mat-step [stepControl]="firstFormGroup">
-          <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Dados Pessoais</ng-template>
-
+  <form [formGroup]="formulario" (submit)="OnSubmit()">
+    <div class="confia">
+      <mat-card>
+        <mat-card-title>Informações pessoais</mat-card-title>
+        <mat-card-content>
+          <div class="pessoal">
             <mat-form-field appearance="fill">
               <mat-label>Nome</mat-label>
-              <input #nome matInput placeholder="Nome Completo" formControlName="nome" required>
+              <input #nome matInput placeholder="Nome Completo" formControlName="nome">
             </mat-form-field>
 
             <mat-form-field appearance="fill">
               <mat-label>Sexo</mat-label>
-              <input #sexo matInput placeholder="Seu sexo" formControlName="sexo" required>
+              <input #sexo matInput placeholder="Seu sexo" formControlName="sexo">
             </mat-form-field>
 
             <mat-form-field appearance="fill">
@@ -27,62 +25,74 @@
 
             <mat-form-field appearance="fill">
               <mat-label>Estado Civil</mat-label>
-              <input #estadoCivil matInput placeholder="Solteiro ou Casado" formControlName="estado" required>
+              <input #estadoCivil matInput placeholder="Solteiro ou Casado" formControlName="estadoCivil">
             </mat-form-field>
-
-            <div>
-              <button mat-button matStepperNext>Avançar</button>
-            </div>
-          </form>
-        </mat-step>
-
-        <mat-step [stepControl]="secondFormGroup" label="Endereço">
-          <form [formGroup]="secondFormGroup">
-            <mat-form-field appearance="fill">
-              <mat-label>CEP</mat-label>
-              <input matInput formControlName="cep" placeholder="Ex: 01153 000"  required>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-              <mat-label>Endereço</mat-label>
-              <input matInput formControlName="endereço" placeholder="Ex: Rua Legal"required>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-              <mat-label>Número</mat-label>
-              <input matInput formControlName="numero" placeholder="Número da Casa/Apartamento"  required>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-              <mat-label>Complemento</mat-label>
-              <input matInput placeholder="Ex: Ao lado da Barbearia"  required>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-              <mat-label>Cidade</mat-label>
-              <input matInput formControlName="cidade" placeholder="Sua cidade"  required>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-              <mat-label>Estado</mat-label>
-              <input matInput formControlName="estado" placeholder="Seu estado"  required>
-            </mat-form-field>
-
-            <div>
-              <button mat-button matStepperPrevious>Voltar</button>
-              <button mat-button matStepperNext (click)="enviarDados(this.nome.value, this.sexo.value, this.dataDeNascimento.value, this.estadoCivil.value)">Finalizar</button>
-            </div>
-          </form>
-        </mat-step>
-
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <p class="final">Tudo Pronto!</p>
-          <div>
-            <button mat-button (click)="stepper.reset()">Cadastrar Novamente</button>
           </div>
-        </mat-step>
+        </mat-card-content>
+      </mat-card>
 
-    </mat-stepper>  
+
+      <mat-card>
+        <mat-card-title class="end">Endereços</mat-card-title>
+        <mat-card-content>
+          <mat-accordion>
+            <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{enderecoNome}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="endereco" formGroupName="Endereco">
+                <div class="parte1">
+                  <mat-form-field appearance="fill">
+                    <mat-label>CEP</mat-label>
+                    <input #cep matInput formControlName="cep" placeholder="Ex: 01153 000" (blur)="consultaCEP()">
+                  </mat-form-field>
+  
+                  <mat-form-field appearance="fill">
+                    <mat-label>Endereço</mat-label>
+                    <input #endereco matInput formControlName="endereco" placeholder="Ex: Rua Legal">
+                  </mat-form-field>
+  
+                  <mat-form-field appearance="fill">
+                    <mat-label>Número</mat-label>
+                    <input #numero matInput formControlName="numero" placeholder="Número da Casa/Apartamento">
+                  </mat-form-field>
+                </div>
+                
+                <div class="parte2">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Complemento</mat-label>
+                    <input #complemento matInput formControlName="complemento" placeholder="Ex: Ao lado da Barbearia">
+                  </mat-form-field>
+  
+                  <mat-form-field appearance="fill">
+                    <mat-label>Cidade</mat-label>
+                    <input #cidade matInput formControlName="cidade" placeholder="Sua cidade">
+                  </mat-form-field>
+  
+                  <mat-form-field appearance="fill">
+                    <mat-label>Estado</mat-label>
+                    <input #estado matInput formControlName="estado" placeholder="Seu estado">
+                  </mat-form-field>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card-content>
+      </mat-card>
     </div>
-</form>
+
+    <button type="submit" mat-button color="primary">Enviar</button>
+    <button type="button" mat-button (click)="formulario.reset()">Cadastrar Novamente</button>
+
+    <div *ngIf="aniversariante; then aniversario">
+
+    </div>
+
+    <ng-template #aniversario>
+      <p class="final">Parabéns hoje é seu aniversario 🥳</p>
+    </ng-template>
+  </form>
+</div>

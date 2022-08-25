@@ -17,12 +17,16 @@ import { UsersComponent } from './users/users.component';
 import {MatTableModule} from '@angular/material/table';
 import { TablePaginationExample } from './data-table/data-table.component';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
     MatButtonModule,
     MatStepperModule,
@@ -33,7 +37,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatButtonToggleModule,
     MatDatepickerModule,
     MatTableModule,
-    MatDividerModule
+    MatDividerModule,
+    MatExpansionModule,
+    MatCardModule,
   ],
   declarations: [
     MainComponent,
