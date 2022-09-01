@@ -103,7 +103,6 @@ export class CreateComponent implements OnInit {
             )
                 .subscribe(resposta => {
                     this.formulario.reset();
-                    this.formulario.untouched;
                     if (resposta.aniversario) {
                         this.openSnackBar('Parabéns hoje é seu aniversário 🥳', 'Fechar');
                     }
