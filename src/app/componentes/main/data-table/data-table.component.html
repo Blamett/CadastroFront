@@ -29,23 +29,18 @@
     <ng-container matColumnDef="enderecos">
       <th mat-header-cell *matHeaderCellDef> Endereço </th>
       <td class="teste" mat-cell *matCellDef="let element">
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            Clique para expandir
-          </mat-expansion-panel-header>
-          <div *ngFor="let child of element.Endereco">
+      <button mat-button color="primary" type="button" (click)="expandirUsuario(element._id)">
+          Clique para expandir
+      </button>
+
+          <!-- <div *ngFor="let child of element.Endereco">
             <p>cep: {{child.cep}}</p>
             <p>endereço: {{child.endereco}}</p>
             <p>número: {{child.numero}}</p>
             <p>complemento: {{child.complemento}}</p>
             <p>cidade: {{child.cidade}}</p>
             <p>estado: {{child.estado}}</p>
-          </div>
-        </mat-expansion-panel>
-
-        <div>
-          <button class="botao">editar</button>
-        </div>
+          </div> -->
       </td>
     </ng-container>
 

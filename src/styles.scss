@@ -125,3 +125,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-expansion-panel-body {
 	padding: 0 !important;
 }
+
+.mat-input-element:disabled,
+.mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after,
+.mat-checkbox-disabled .mat-checkbox-label,
+.mat-select-disabled .mat-select-value {
+  color: inherit;
+}
+.mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-label {
+  color: rgba(0, 0, 0, 0.6);
+}

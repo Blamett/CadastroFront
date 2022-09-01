@@ -3,22 +3,22 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
 
-  urlInicial: string;
+    urlInicial: string;
 
-  constructor(
-    router: Router,
-  ) {
-    this.urlInicial = router.url;
-  }
+    constructor(
+        router: Router,
+    ) {
+        this.urlInicial = router.url;
+    }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-  }
+    }
 
 }

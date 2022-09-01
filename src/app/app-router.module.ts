@@ -5,18 +5,19 @@ import { UsersComponent } from "./componentes/main/users/users.component";
 import { NotFoundComponent } from "./componentes/not-found/not-found.component";
 
 export const routes: Route[] = [
-    { path: "", component: MainComponent,
-    children: [
-        {
-            path: 'cadastro',
-            component: CreateComponent,
-        },
-        {
-            path: 'usuarios',
-            component: UsersComponent, 
-        },
-    ]
-  },
+    {
+        path: "", component: MainComponent,
+        children: [
+            {
+                path: 'cadastro',
+                component: CreateComponent,
+            },
+            {
+                path: 'usuarios',
+                component: UsersComponent,
+            },
+        ]
+    },
 
     { path: "**", component: NotFoundComponent },
 ];

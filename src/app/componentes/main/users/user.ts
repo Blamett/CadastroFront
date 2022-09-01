@@ -2,6 +2,8 @@ import { Type } from "class-transformer";
 
 export class User {
 
+    _id!: string
+
     nome!: string;
 
     sexo!: string;
@@ -20,4 +22,9 @@ export class User {
         estado: string;
     }[];
 
+};
+
+export interface Aniversario {
+
+    aniversario: boolean
 }
