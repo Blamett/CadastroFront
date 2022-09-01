@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+.maincontent{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    padding-top: 30vh;
+}
+
+h1{
+    font-weight: 700;
+    font-size: 130px;
+    color: rgb(63, 63, 63);
+}
+
+h2{
+    font-weight: 500;
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: rgb(63, 63, 63);
+}
