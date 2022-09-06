@@ -41,8 +41,6 @@ export class TablePaginationExample implements OnInit {
     expandirUsuario(_id: string) {
         let currentUser = _id;
         const dialogRef = this.dialog.open(UserInfoComponent, {
-            width: '1300px',
-            height: '800px',
             data: { id: currentUser, }
         });
 

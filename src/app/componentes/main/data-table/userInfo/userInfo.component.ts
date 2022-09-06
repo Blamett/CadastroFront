@@ -15,8 +15,6 @@ import { idData } from '../id-interface';
 })
 export class UserInfoComponent implements OnInit {
 
-    panelOpenState: boolean = false;
-
     get arrayEnderecos(): FormArray {
         return this.formulario.get("Endereco") as FormArray;
     }
@@ -26,6 +24,8 @@ export class UserInfoComponent implements OnInit {
     userId: string = '';
 
     editMode: boolean = false;
+
+    valorEndereco = 0;
 
     constructor(
         public dialogRef: MatDialogRef<UserInfoComponent>,
@@ -83,7 +83,9 @@ export class UserInfoComponent implements OnInit {
     });
 
     newEndereco(): FormGroup {
+        ++this.valorEndereco;
         return this.formBuilder.group({
+            apelido: ['Novo Endereço', Validators.required],
             cep: [null, [Validators.required, Validators.pattern(/\d{8}/)],],
             endereco: [null, Validators.required],
             numero: [null, Validators.required],
@@ -91,6 +93,15 @@ export class UserInfoComponent implements OnInit {
             cidade: [null, Validators.required],
             estado: [null, Validators.required]
         });
+    }
+
+    quandoAdicionarMais() {
+        (this.formulario.get("Endereco") as FormArray).push(this.newEndereco());
+    }
+
+    removerEndereco(i: number) {
+        --this.valorEndereco;
+        this.arrayEnderecos.removeAt(i);
     }
 
     addEndereco() {
@@ -123,6 +134,9 @@ export class UserInfoComponent implements OnInit {
                     this.openSnackBar('Usuário atualizado!', 'Fechar');
 
                 });
+        }
+        else {
+            this.formulario.markAllAsTouched();
         }
     }
 

@@ -1,129 +1,171 @@
 <body>
-    <header>
-        <h1 class="title">Registro do Usuário</h1>
-    </header>
+    <div class="cadastrarUsuario">
 
-    <main>
-        <!-- <input matInput value={{this.usuario.nome}}> -->
+        <form [formGroup]="formulario" (submit)="atualizarUsuario()">
+            <div class="confia">
+                <mat-card class="card">
+                    <mat-card-title>Informações pessoais</mat-card-title>
+                    <mat-card-content class="content">
+                        <div class="pessoal">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Nome</mat-label>
+                                <input #nome matInput placeholder="Nome Completo" formControlName="nome">
+                            </mat-form-field>
 
-        <div class="cadastrarUsuario">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Sexo</mat-label>
+                                <mat-select formControlName="sexo">
+                                    <mat-option value="Masculino">Masculino</mat-option>
+                                    <mat-option value="Feminino">Feminino</mat-option>
+                                </mat-select>
+                                <!-- <input #sexo matInput placeholder="Seu sexo" formControlName="sexo"> -->
+                            </mat-form-field>
 
-            <form [formGroup]="formulario" (submit)="atualizarUsuario()">
-                <div class="confia">
-                    <mat-card>
-                        <mat-card-title>Informações pessoais</mat-card-title>
-                        <mat-card-content>
-                            <div class="pessoal">
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Nome</mat-label>
-                                    <input #nome matInput placeholder="Nome Completo" formControlName="nome">
-                                </mat-form-field>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Data de Nascimento</mat-label>
+                                <input #dataDeNascimento matInput [matDatepicker]="picker"
+                                    formControlName="dataDeNascimento">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
 
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Sexo</mat-label>
-                                    <input #sexo matInput placeholder="Seu sexo" formControlName="sexo">
-                                </mat-form-field>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Estado Civil</mat-label>
+                                <mat-select formControlName="estadoCivil">
+                                    <mat-option value="Solteiro">Solteiro</mat-option>
+                                    <mat-option value="Casado">Casado</mat-option>
+                                    <mat-option value="Divorciado">Divorciado</mat-option>
+                                    <mat-option value="Viúvo">Viúvo</mat-option>
+                                </mat-select>
+                                <!-- <input #estadoCivil matInput placeholder="Solteiro ou Casado" formControlName="estadoCivil"> -->
+                            </mat-form-field>
 
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Data de Nascimento</mat-label>
-                                    <input #dataDeNascimento matInput [matDatepicker]="picker"
-                                        formControlName="dataDeNascimento">
-                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
-                                </mat-form-field>
+                            <ng-template #editOFF>
+                                <button mat-dialog-close class="btn" type="button" (click)="deletarUsuario()" mat-button
+                                    color="warn">Deletar</button>
 
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Estado Civil</mat-label>
-                                    <input #estadoCivil matInput placeholder="Solteiro ou Casado"
-                                        formControlName="estadoCivil">
-                                </mat-form-field>
-                                <div class="botoes">
-                                    <div *ngIf="editMode; then editON else editOFF">
+                                <button class="btn" type="button" (click)="activeEditMode()" mat-button
+                                    color="primary">Editar
+                                </button>
+                            </ng-template>
+
+                            <ng-template #editON>
+
+                                <button class="btn" type="button" (click)="desactiveEditMode()" mat-button
+                                    color="warn">Cancelar
+                                </button>
+
+                                <button class="btn" type="submit" mat-button color="primary">Salvar</button>
+                            </ng-template>
+
+                        </div>
+                    </mat-card-content>
+
+                    <mat-card-actions>
+                        <div class="botoes" *ngIf="editMode; then editON else editOFF">
+
+                        </div>
+                    </mat-card-actions>
+
+
+                </mat-card>
+
+
+                <mat-card>
+                    <mat-card-title class="end">Endereços</mat-card-title>
+                    <mat-card-content>
+                        <mat-accordion>
+                            <ng-container formArrayName="Endereco">
+                                <mat-expansion-panel *ngFor="let endereco of arrayEnderecos.controls; index as i;"
+                                    [expanded]="true">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            {{apelido.value}}
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+
+
+                                    <div class="endereco" [formGroup]="endereco|asFormGroup">
+                                        <div class="parte1">
+                                            <mat-form-field appearance="fill" class="marginzinha">
+                                                <mat-label>Apelido do Endereço</mat-label>
+                                                <input #apelido matInput formControlName="apelido"
+                                                    placeholder="Coloque o nome que preferir">
+                                            </mat-form-field>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>CEP</mat-label>
+                                                <input #cep matInput formControlName="cep" placeholder="Ex: 01153 000"
+                                                    (blur)="consultaCEP(endereco)">
+                                            </mat-form-field>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Endereço</mat-label>
+                                                <input #endereco matInput formControlName="endereco"
+                                                    placeholder="Ex: Rua Legal">
+                                            </mat-form-field>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Número</mat-label>
+                                                <input #numero matInput formControlName="numero"
+                                                    placeholder="Número da Casa/Apartamento">
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="parte2">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Complemento</mat-label>
+                                                <input #complemento matInput formControlName="complemento"
+                                                    placeholder="Ex: Ao lado da Barbearia">
+                                            </mat-form-field>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Cidade</mat-label>
+                                                <input #cidade matInput formControlName="cidade"
+                                                    placeholder="Sua cidade">
+                                            </mat-form-field>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Estado</mat-label>
+                                                <input #estado matInput formControlName="estado"
+                                                    placeholder="Seu estado">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div
+                                        *ngIf="valorEndereco > 1 && editMode == true; then podeRemover else naoPodeRemover">
 
                                     </div>
-                                </div>
 
-                                <ng-template #editOFF>
-                                    <button mat-dialog-close class="btn" type="button" (click)="deletarUsuario()"
-                                        mat-button color="warn">Deletar</button>
+                                    <ng-template #naoPodeRemover>
 
-                                    <button class="btn" type="button" (click)="activeEditMode()" mat-button
-                                        color="primary">Editar
-                                    </button>
-                                </ng-template>
+                                    </ng-template>
 
-                                <ng-template #editON>
+                                    <ng-template #podeRemover>
+                                        <mat-action-row>
+                                            <button mat-button color="warn" (click)="removerEndereco(i)">
+                                                Remover
+                                            </button>
+                                        </mat-action-row>
+                                    </ng-template>
 
-                                    <button class="btn" type="button" (click)="desactiveEditMode()" mat-button
-                                        color="warn">Cancelar
-                                    </button>
+                                </mat-expansion-panel>
+                            </ng-container>
+                        </mat-accordion>
+                    </mat-card-content>
 
-                                    <button class="btn" type="submit" mat-button color="primary">Salvar</button>
-                                </ng-template>
+                    <div *ngIf="editMode == true; then podeAdicionar else naoPodeAdicionar">
 
-                            </div>
-                        </mat-card-content>
-                    </mat-card>
+                    </div>
 
+                    <ng-template #naoPodeAdicionar>
 
-                    <mat-card>
-                        <mat-card-title class="end">Endereços</mat-card-title>
-                        <mat-card-content>
-                            <mat-accordion>
-                                <ng-container formArrayName="Endereco">
-                                    <mat-expansion-panel *ngFor="let endereco of arrayEnderecos.controls"
-                                        [expanded]="true" (opened)="panelOpenState = true">
-                                        <mat-expansion-panel-header>
-                                            <mat-panel-title>
-                                                Endereço 1
-                                            </mat-panel-title>
-                                        </mat-expansion-panel-header>
+                    </ng-template>
 
+                    <ng-template #podeAdicionar>
+                        <button (click)="quandoAdicionarMais()" type="button" class="adicionar" mat-mini-fab
+                            color="primary" aria-label="Example icon button with a plus one icon">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </ng-template>
 
-                                        <div class="endereco" [formGroup]="endereco|asFormGroup">
-                                            <div class="parte1">
-                                                <mat-form-field appearance="fill">
-                                                    <mat-label>CEP</mat-label>
-                                                    <input #cep matInput formControlName="cep"
-                                                        placeholder="Ex: 01153 000" (blur)="consultaCEP(endereco)">
-                                                </mat-form-field>
-                                                <mat-form-field appearance="fill">
-                                                    <mat-label>Endereço</mat-label>
-                                                    <input #endereco matInput formControlName="endereco"
-                                                        placeholder="Ex: Rua Legal">
-                                                </mat-form-field>
-                                                <mat-form-field appearance="fill">
-                                                    <mat-label>Número</mat-label>
-                                                    <input #numero matInput formControlName="numero"
-                                                        placeholder="Número da Casa/Apartamento">
-                                                </mat-form-field>
-                                            </div>
-
-                                            <div class="parte2">
-                                                <mat-form-field appearance="fill">
-                                                    <mat-label>Complemento</mat-label>
-                                                    <input #complemento matInput formControlName="complemento"
-                                                        placeholder="Ex: Ao lado da Barbearia">
-                                                </mat-form-field>
-                                                <mat-form-field appearance="fill">
-                                                    <mat-label>Cidade</mat-label>
-                                                    <input #cidade matInput formControlName="cidade"
-                                                        placeholder="Sua cidade">
-                                                </mat-form-field>
-                                                <mat-form-field appearance="fill">
-                                                    <mat-label>Estado</mat-label>
-                                                    <input #estado matInput formControlName="estado"
-                                                        placeholder="Seu estado">
-                                                </mat-form-field>
-                                            </div>
-                                        </div>
-                                    </mat-expansion-panel>
-                                </ng-container>
-                            </mat-accordion>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </form>
-        </div>
-    </main>
+                </mat-card>
+            </div>
+        </form>
+    </div>
 </body>

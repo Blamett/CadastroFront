@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CreateComponent implements OnInit {
 
-    panelOpenState: boolean = false;
+    valorEndereco = 0;
 
     get arrayEnderecos(): FormArray {
         return this.formulario.get("Endereco") as FormArray;
@@ -36,30 +36,33 @@ export class CreateComponent implements OnInit {
         private formBuilder: FormBuilder,
         private http: HttpClient,
         private _snackBar: MatSnackBar
-    ) { }
+    ) {
+
+    }
 
     ngOnInit(): void {
-        this.formulario.patchValue({
-            // nome: "Baldinho",
-            // sexo: "qq isso?",
-            // dataDeNascimento: new Date("2006-02-17T02:00:00.000Z"),
-            // estadoCivil: "É Complicado",
-            Endereco: [
-                {
-                    // cep: "89160141",
-                    // endereco: "",
-                    // numero: "",
-                    // complemento: "",
-                    // cidade: "",
-                    // estado: "",
-                }
-            ]
-        });
+        // this.formulario.patchValue({
+        //     nome: "Baldinho",
+        //     sexo: "qq isso?",
+        //     dataDeNascimento: new Date("2006-02-17T02:00:00.000Z"),
+        //     estadoCivil: "É Complicado",
+        //     Endereco: [
+        //         {
+        //             cep: "89160141",
+        //             endereco: "",
+        //             numero: "",
+        //             complemento: "",
+        //             cidade: "",
+        //             estado: "",
+        //         }
+        //     ]
+        // });
     }
 
     newEndereco(): FormGroup {
+        ++this.valorEndereco;
         return this.formBuilder.group({
-            apelido: ['Novo Endereço'],
+            apelido: ['Novo Endereço', Validators.required],
             cep: [null, [Validators.required, Validators.pattern(/\d{8}/)],],
             endereco: [null, Validators.required],
             numero: [null, Validators.required],
@@ -69,6 +72,10 @@ export class CreateComponent implements OnInit {
         });
     }
 
+    removerEndereco(i: number) {
+        this.arrayEnderecos.removeAt(i);
+        --this.valorEndereco;
+    }
 
     quandoAdicionarMais() {
         (this.formulario.get("Endereco") as FormArray).push(this.newEndereco());
@@ -110,6 +117,9 @@ export class CreateComponent implements OnInit {
                         this.openSnackBar('Usuário Criado', 'Fechar');
                     }
                 });
+        }
+        else {
+            this.formulario.markAllAsTouched();
         }
     }
 

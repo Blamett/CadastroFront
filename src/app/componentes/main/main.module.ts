@@ -24,9 +24,12 @@ import { UsersComponent } from './users/users.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserInfoComponent } from './data-table/userInfo/userInfo.component';
+import { MatSelectModule } from '@angular/material/select';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
     imports: [
+        NgxMaskModule.forChild(),
         CommonModule,
         BrowserModule,
         FormsModule,
@@ -47,6 +50,7 @@ import { UserInfoComponent } from './data-table/userInfo/userInfo.component';
         MatIconModule,
         MatSnackBarModule,
         MatDialogModule,
+        MatSelectModule
     ],
     declarations: [
         MainComponent,

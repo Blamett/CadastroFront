@@ -6,6 +6,7 @@ import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { NgxMaskModule } from 'ngx-mask';
 import 'reflect-metadata';
 import { routes } from './app-router.module';
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ export const CORE_DATE_LOCALE = "pt-BR";
         BrowserAnimationsModule,
         MainModule,
         HttpClientModule,
+        NgxMaskModule.forRoot(),
     ],
     providers: [
         { provide: MAT_DATE_LOCALE, useValue: CORE_DATE_LOCALE },
