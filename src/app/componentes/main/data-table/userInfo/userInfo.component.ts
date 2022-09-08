@@ -27,6 +27,8 @@ export class UserInfoComponent implements OnInit {
 
     valorEndereco = 0;
 
+    somethingHasChanged: boolean = false;
+
     constructor(
         public dialogRef: MatDialogRef<UserInfoComponent>,
         @Inject(MAT_DIALOG_DATA) public data: idData,
@@ -67,6 +69,8 @@ export class UserInfoComponent implements OnInit {
 
                 this.formulario.disable();
             });
+
+        this.somethingHasChanged = false;
     }
 
 
@@ -126,7 +130,17 @@ export class UserInfoComponent implements OnInit {
     }
 
     atualizarUsuario() {
+
         if (this.formulario.valid) {
+
+            // if (this.somethingHasChanged = true) {
+
+            // }
+            // else {
+            //     this.openSnackBar('Nenhum dado foi atualizado!', 'Fechar');
+            //     this.editMode = false;
+            // }
+
             this.http.patch(`http://192.168.90.58:3000/user/${this.userId}`,
                 this.formulario.value,
             )
@@ -134,6 +148,7 @@ export class UserInfoComponent implements OnInit {
                     this.openSnackBar('Usuário atualizado!', 'Fechar');
 
                 });
+
         }
         else {
             this.formulario.markAllAsTouched();
@@ -145,7 +160,7 @@ export class UserInfoComponent implements OnInit {
         this.http.delete(`http://192.168.90.58:3000/user/${this.userId}`
         )
             .subscribe(resposta => {
-                this.openSnackBar('Usuário Removido', 'Ok');
+                this.openSnackBar('Usuário Removido', 'Fechar');
 
             });
 
