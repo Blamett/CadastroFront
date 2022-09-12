@@ -146,7 +146,6 @@ export class UserInfoComponent implements OnInit {
             )
                 .subscribe(resposta => {
                     this.openSnackBar('Usuário atualizado!', 'Fechar');
-
                 });
 
         }

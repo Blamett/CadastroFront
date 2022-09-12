@@ -27,6 +27,14 @@ form{
     height: 650px;
 }
 
+.card{
+    overflow: auto;
+}
+
+// .card2{
+//     overflow: auto;
+// }
+
 .pessoal{
     display: flex;
     flex-direction: column;

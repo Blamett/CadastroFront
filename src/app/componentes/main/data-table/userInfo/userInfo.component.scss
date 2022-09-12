@@ -36,6 +36,7 @@ form{
     display: flex;
     flex-direction: row;
     flex-grow: 1 1 auto;
+    height: 650px;
 }
 
 .pessoal{
@@ -80,4 +81,8 @@ form{
 
 .marginzinha{
     margin-right: 5px;
+}
+
+.cardscroll{
+    overflow: auto;
 }
