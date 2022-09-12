@@ -7,6 +7,7 @@ body{
     font-weight: 600;
     display: flex;
     flex-direction: column;
+    flex-grow: 1 1 auto;
 }
 
 .title{
@@ -16,9 +17,9 @@ body{
 form{
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
     justify-content: center;
     align-items: center;
+    text-align: center;
 
     &>.cadastrarUsuario>h1{
         color: mat.get-color-from-palette($my-palette, 500);
@@ -34,14 +35,17 @@ form{
 .confia{
     display: flex;
     flex-direction: row;
-    margin-bottom: 20px;
+    flex-grow: 1 1 auto;
     height: 650px;
 }
 
 .pessoal{
     display: flex;
     flex-direction: column;
-    padding: 35px;
+}
+
+.content{
+    flex: 1 1 auto;
 }
 
 .endereco{
@@ -67,5 +71,18 @@ form{
 }
 
 .btn{
+    align-self: flex-start;
+}
 
+.card{
+    display: flex;
+    flex-direction: column;
+}
+
+.marginzinha{
+    margin-right: 5px;
+}
+
+.cardscroll{
+    overflow: auto;
 }

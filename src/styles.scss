@@ -135,3 +135,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-label {
   color: rgba(0, 0, 0, 0.6);
 }
+
+.mat-dialog-container{
+    padding: 0 !important; 
+}
