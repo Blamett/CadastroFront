@@ -26,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UserInfoComponent } from './data-table/userInfo/userInfo.component';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMaskModule } from 'ngx-mask';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     imports: [
@@ -50,7 +51,8 @@ import { NgxMaskModule } from 'ngx-mask';
         MatIconModule,
         MatSnackBarModule,
         MatDialogModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTooltipModule,
     ],
     declarations: [
         MainComponent,

@@ -27,6 +27,8 @@ export class UserInfoComponent implements OnInit {
 
     valorEndereco = 0;
 
+    deleteMode: boolean = false;
+
     somethingHasChanged: boolean = false;
 
     constructor(
@@ -42,6 +44,14 @@ export class UserInfoComponent implements OnInit {
     ngOnInit() {
         this.userId = this.data.id;
         this.getUserInfo(this.userId);
+    }
+
+    activeDeleteMode() {
+        this.deleteMode = true;
+    }
+
+    desactiveDeleteMode() {
+        this.deleteMode = false;
     }
 
     activeEditMode() {
@@ -169,5 +179,9 @@ export class UserInfoComponent implements OnInit {
         this._snackBar.open(message, action, {
             duration: 3000,
         });
+    }
+
+    isMobile() {
+        return window.innerWidth <= 1110;
     }
 }

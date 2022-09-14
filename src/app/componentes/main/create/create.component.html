@@ -2,7 +2,7 @@
 
     <form [formGroup]="formulario" (submit)="OnSubmit()">
         <div class="confia">
-            <mat-card>
+            <mat-card class="card-teste">
                 <mat-card-title>Informações pessoais</mat-card-title>
                 <mat-card-content>
                     <div class="pessoal">
@@ -22,7 +22,7 @@
 
                         <mat-form-field appearance="fill">
                             <mat-label>Data de Nascimento</mat-label>
-                            <input #dataDeNascimento matInput [matDatepicker]="picker"
+                            <input inputmode="numeric" #dataDeNascimento matInput [matDatepicker]="picker"
                                 formControlName="dataDeNascimento">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
@@ -65,34 +65,35 @@
                                             <input #apelido matInput formControlName="apelido"
                                                 placeholder="Coloque o nome que preferir">
                                         </mat-form-field>
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field class="marginzinha" appearance="fill">
                                             <mat-label>CEP</mat-label>
-                                            <input #cep mask="00000-000" matInput formControlName="cep"
-                                                placeholder="Ex: 01153 000" (blur)="consultaCEP(endereco)">
+                                            <input #cep inputmode="numeric" mask="00000-000" matInput
+                                                formControlName="cep" placeholder="Ex: 01153 000"
+                                                (blur)="consultaCEP(endereco)">
                                         </mat-form-field>
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field class="marginzinha" appearance="fill">
                                             <mat-label>Endereço</mat-label>
                                             <input #endereco matInput formControlName="endereco"
                                                 placeholder="Ex: Rua Legal">
                                         </mat-form-field>
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field class="marginzinha" appearance="fill">
                                             <mat-label>Número</mat-label>
-                                            <input #numero matInput formControlName="numero"
+                                            <input inputmode="numeric" #numero matInput formControlName="numero"
                                                 placeholder="Número da Casa/Apartamento">
                                         </mat-form-field>
                                     </div>
 
                                     <div class="parte2">
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field class="marginzinha" appearance="fill">
                                             <mat-label>Complemento</mat-label>
                                             <input #complemento matInput formControlName="complemento"
                                                 placeholder="Ex: Ao lado da Barbearia">
                                         </mat-form-field>
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field class="marginzinha" appearance="fill">
                                             <mat-label>Cidade</mat-label>
                                             <input #cidade matInput formControlName="cidade" placeholder="Sua cidade">
                                         </mat-form-field>
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field class="marginzinha" appearance="fill">
                                             <mat-label>Estado</mat-label>
                                             <input #estado matInput formControlName="estado" placeholder="Seu estado">
                                         </mat-form-field>
