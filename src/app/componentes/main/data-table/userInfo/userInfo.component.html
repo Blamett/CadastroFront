@@ -23,7 +23,7 @@
 
                             <mat-form-field appearance="fill">
                                 <mat-label>Data de Nascimento</mat-label>
-                                <input #dataDeNascimento matInput [matDatepicker]="picker"
+                                <input inputmode="numeric" #dataDeNascimento matInput [matDatepicker]="picker"
                                     formControlName="dataDeNascimento">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
@@ -42,32 +42,54 @@
                             </mat-form-field>
 
                             <ng-template #editOFF>
-                                <button mat-dialog-close class="btn" type="button" (click)="deletarUsuario()" mat-button
-                                    color="warn">Deletar</button>
-
                                 <button class="btn" type="button" (click)="activeEditMode()" mat-button
-                                    color="primary">Editar
+                                    color="primary">Editar </button>
+
+                                <button matTooltip="A ação realizada não pode ser desfeita" class="btn" type="button"
+                                    (click)="activeDeleteMode()" mat-button color="warn">Deletar
                                 </button>
                             </ng-template>
 
                             <ng-template #editON>
+                                <button class="btn" type="submit" mat-button color="primary">Salvar</button>
 
                                 <button class="btn" type="button" (click)="desactiveEditMode()" mat-button
                                     color="warn">Cancelar
                                 </button>
+                            </ng-template>
 
-                                <button class="btn" type="submit" mat-button color="primary">Salvar</button>
+                            <ng-template #deleteModeOn>
+                                <p class="confirmLabel">Deletar o usuário é uma ação irreversivel</p>
+                                <p class="labelmargin">Deseja continuar?</p>
+                                <button mat-button mat-dialog-close type="button" color="warn"
+                                    (click)="deletarUsuario()">Confirmar</button>
+
+                                <button mat-button type="button" color="primary"
+                                    (click)="desactiveDeleteMode()">Cancelar</button>
+                            </ng-template>
+
+                            <ng-template #renderNormal>
+                                <div class="botoes" *ngIf="editMode; then editON else editOFF">
+                                </div>
+                            </ng-template>
+
+
+                            <ng-template #desktop>
+                                <mat-card-actions>
+                                    <div *ngIf="deleteMode; then deleteModeOn else renderNormal">
+
+                                    </div>
+                                </mat-card-actions>
                             </ng-template>
 
                         </div>
                     </mat-card-content>
 
-                    <mat-card-actions>
-                        <div class="botoes" *ngIf="editMode; then editON else editOFF">
+                    <div *ngIf="!isMobile(); then desktop">
+                        <div *ngIf="deleteMode; then deleteModeOn">
 
                         </div>
-                    </mat-card-actions>
-
+                    </div>
 
                 </mat-card>
 
@@ -93,35 +115,36 @@
                                                 <input #apelido matInput formControlName="apelido"
                                                     placeholder="Coloque o nome que preferir">
                                             </mat-form-field>
-                                            <mat-form-field appearance="fill">
+                                            <mat-form-field class="marginzinha" appearance="fill">
                                                 <mat-label>CEP</mat-label>
-                                                <input #cep matInput formControlName="cep" placeholder="Ex: 01153 000"
+                                                <input #cep inputmode="numeric" mask="00000-000" matInput
+                                                    formControlName="cep" placeholder="Ex: 01153 000"
                                                     (blur)="consultaCEP(endereco)">
                                             </mat-form-field>
-                                            <mat-form-field appearance="fill">
+                                            <mat-form-field class="marginzinha" appearance="fill">
                                                 <mat-label>Endereço</mat-label>
                                                 <input #endereco matInput formControlName="endereco"
                                                     placeholder="Ex: Rua Legal">
                                             </mat-form-field>
-                                            <mat-form-field appearance="fill">
+                                            <mat-form-field class="marginzinha" appearance="fill">
                                                 <mat-label>Número</mat-label>
-                                                <input #numero matInput formControlName="numero"
+                                                <input #numero inputmode="numeric" matInput formControlName="numero"
                                                     placeholder="Número da Casa/Apartamento">
                                             </mat-form-field>
                                         </div>
 
                                         <div class="parte2">
-                                            <mat-form-field appearance="fill">
+                                            <mat-form-field class="marginzinha" appearance="fill">
                                                 <mat-label>Complemento</mat-label>
                                                 <input #complemento matInput formControlName="complemento"
                                                     placeholder="Ex: Ao lado da Barbearia">
                                             </mat-form-field>
-                                            <mat-form-field appearance="fill">
+                                            <mat-form-field class="marginzinha" appearance="fill">
                                                 <mat-label>Cidade</mat-label>
                                                 <input #cidade matInput formControlName="cidade"
                                                     placeholder="Sua cidade">
                                             </mat-form-field>
-                                            <mat-form-field appearance="fill">
+                                            <mat-form-field class="marginzinha" appearance="fill">
                                                 <mat-label>Estado</mat-label>
                                                 <input #estado matInput formControlName="estado"
                                                     placeholder="Seu estado">
@@ -166,6 +189,28 @@
                     </ng-template>
 
                 </mat-card>
+
+                <div *ngIf="isMobile(); then mobile">
+
+                </div>
+
+
+                <ng-template #renderNormalMobile>
+                    <div class="botoes" *ngIf="editMode; then editON else editOFF">
+
+                    </div>
+                    <button mat-dialog-close class="btn" type="button" mat-button>Fechar
+                    </button>
+                </ng-template>
+
+                <ng-template #mobile>
+                    <mat-card-actions>
+                        <div *ngIf="deleteMode; then deleteModeOn else renderNormalMobile">
+
+                        </div>
+                    </mat-card-actions>
+                </ng-template>
+
             </div>
         </form>
     </div>
